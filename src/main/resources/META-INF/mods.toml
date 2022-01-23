@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[36.2.22,)"
+license="MIT License"
+issueTrackerURL="https://github.com/Mrthomas20121/rechiseled_eco/issues"
+
+[[mods]]
+modId="rechiseled_eco"
+version="1.0.0"
+displayName="Rechiseled Eco"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/rechiseled_eco"
+#logoFile="tinkers_reforged_logo.png"
+authors="Mrthomas20121"
+description='''
+Add Generic ecosphere support to Rechiseled
+'''
+
+[[dependencies.rechiseled_eco]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36.2.19,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.rechiseled_eco]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,)"
+    ordering="NONE"
+    side="BOTH"
