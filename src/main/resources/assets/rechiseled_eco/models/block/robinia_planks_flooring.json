@@ -1,0 +1,7 @@
+{
+  "parent": "rechiseled:block/connecting_cube_all",
+  "textures": {
+    "all": "rechiseled_eco:block/robinia_planks_flooring"
+  },
+  "loader": "rechiseled:connecting_model"
+}

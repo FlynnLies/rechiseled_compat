@@ -1,0 +1,8 @@
+{
+  "parent": "rechiseled:block/connecting_cube_all",
+  "textures": {
+    "all": "rechiseled_eco:block/winisugi_planks_bricks"
+  },
+  "loader": "rechiseled:connecting_model",
+  "should_connect": true
+}

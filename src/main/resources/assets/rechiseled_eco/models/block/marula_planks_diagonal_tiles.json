@@ -1,0 +1,7 @@
+{
+  "parent": "rechiseled:block/connecting_cube_all",
+  "textures": {
+    "all": "rechiseled_eco:block/marula_planks_diagonal_tiles"
+  },
+  "loader": "rechiseled:connecting_model"
+}

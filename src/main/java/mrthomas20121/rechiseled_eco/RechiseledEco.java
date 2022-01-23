@@ -1,5 +1,7 @@
 package mrthomas20121.rechiseled_eco;
 
+import mrthomas20121.rechiseled_eco.init.Blocks;
+import mrthomas20121.rechiseled_eco.init.Items;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,7 @@ public class RechiseledEco {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public RechiseledEco() {
-		ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		Blocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		Items.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 }

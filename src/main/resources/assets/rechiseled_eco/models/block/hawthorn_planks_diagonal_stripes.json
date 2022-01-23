@@ -1,0 +1,7 @@
+{
+  "parent": "rechiseled:block/connecting_cube_all",
+  "textures": {
+    "all": "rechiseled_eco:block/hawthorn_planks_diagonal_stripes"
+  },
+  "loader": "rechiseled:connecting_model"
+}

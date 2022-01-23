@@ -70,6 +70,9 @@ dependencies {
     // Config lib
     implementation fg.deobf('curse.maven:supermartijn642s-config-lib-438332:3413938')
 
+    // rechiseled
+    implementation fg.deobf('curse.maven:rechiseled-558998:3619876')
+
     // Just Enough Items
     implementation fg.deobf('curse.maven:jei-238222:3564654')
 
