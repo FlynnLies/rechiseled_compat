@@ -73,6 +73,9 @@ dependencies {
     // rechiseled
     implementation fg.deobf('curse.maven:rechiseled-558998:3619876')
 
+    // generic eco
+    implementation fg.deobf('curse.maven:generic-ecosphere-487769:3559153')
+
     // Just Enough Items
     implementation fg.deobf('curse.maven:jei-238222:3564654')
 
