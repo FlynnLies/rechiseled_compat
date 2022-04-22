@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "rechiseled:connecting_model",
+  "should_connect": true,
+  "model_textures": {
+    "all": {
+      "location": "rechiseled_compat:block/twilightforest_planks_twilight_oak_tiles",
+      "connecting": true
+    }
+  }
+}

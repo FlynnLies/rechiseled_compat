@@ -1,8 +1,0 @@
-{
-  "parent": "rechiseled:block/connecting_cube_all",
-  "textures": {
-    "all": "rechiseled_eco:block/rainbow_eucalyptus_planks_pattern"
-  },
-  "loader": "rechiseled:connecting_model",
-  "should_connect": true
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "rechiseled:block/connecting_cube_all",
-  "textures": {
-    "all": "rechiseled_eco:block/alder_planks_crate"
-  },
-  "loader": "rechiseled:connecting_model"
-}

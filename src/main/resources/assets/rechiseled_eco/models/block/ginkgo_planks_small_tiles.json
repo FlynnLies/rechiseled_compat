@@ -1,7 +1,0 @@
-{
-  "parent": "rechiseled:block/connecting_cube_all",
-  "textures": {
-    "all": "rechiseled_eco:block/ginkgo_planks_small_tiles"
-  },
-  "loader": "rechiseled:connecting_model"
-}

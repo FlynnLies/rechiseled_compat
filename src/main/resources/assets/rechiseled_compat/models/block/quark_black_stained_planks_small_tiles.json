@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "rechiseled:connecting_model",
+  "model_textures": {
+    "all": {
+      "location": "rechiseled_compat:block/quark_black_stained_planks_small_tiles",
+      "connecting": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "rechiseled:connecting_model",
+  "model_textures": {
+    "all": {
+      "location": "rechiseled_compat:block/biomesoplenty_umbran_planks_large_tiles",
+      "connecting": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "rechiseled:connecting_model",
+  "model_textures": {
+    "all": {
+      "location": "rechiseled_compat:block/twilightforest_planks_time_beams",
+      "connecting": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "rechiseled:connecting_model",
+  "model_textures": {
+    "all": {
+      "location": "rechiseled_compat:block/genericeco_robinia_planks_diagonal_stripes",
+      "connecting": true
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "rechiseled:block/connecting_cube_all",
-  "textures": {
-    "all": "rechiseled_eco:block/apple_planks_tiles"
-  },
-  "loader": "rechiseled:connecting_model"
-}

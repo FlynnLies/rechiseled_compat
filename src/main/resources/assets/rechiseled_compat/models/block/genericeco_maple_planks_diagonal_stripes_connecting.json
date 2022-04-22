@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "loader": "rechiseled:connecting_model",
+  "should_connect": true,
+  "model_textures": {
+    "all": {
+      "location": "rechiseled_compat:block/genericeco_maple_planks_diagonal_stripes",
+      "connecting": true
+    }
+  }
+}
