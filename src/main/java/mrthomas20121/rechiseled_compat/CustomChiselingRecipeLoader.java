@@ -20,6 +20,8 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = RechiseledCompat.MOD_ID)
@@ -49,12 +51,11 @@ public class CustomChiselingRecipeLoader extends JsonReloadListener {
         }
         recipes.addAll(ChiselingRecipes.getAllRecipes());
         try {
-            Field field = ChiselingRecipes.class.getDeclaredField("chiselingRecipes");
-            field.setAccessible(true);
-            List<ChiselingRecipe> recipeList = (List<ChiselingRecipe>) field.get(null);
-            recipeList = Collections.unmodifiableList(recipes);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+            Method method = ChiselingRecipes.class.getDeclaredMethod("setRecipes", List.class);
+            method.setAccessible(true);
+            method.invoke(ChiselingRecipe.class, recipes);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            RechiseledCompat.LOGGER.error(e);
         }
     }
 }
