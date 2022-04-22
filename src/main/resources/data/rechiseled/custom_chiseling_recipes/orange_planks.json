@@ -1,0 +1,66 @@
+{
+    "type": "rechiseled_compat:chiseling",
+	"mod_id": "quark",
+    "entries": [
+      {
+        "item": "rechiseled_compat:quark_orange_stained_beams",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_beams_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_bricks",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_bricks_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_crate",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_crate_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_diagonal_stripes",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_diagonal_stripes_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_diagonal_tiles",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_diagonal_tiles_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_dotted",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_dotted_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_flooring",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_flooring_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_large_tiles",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_large_tiles_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_pattern",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_pattern_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_small_bricks",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_small_bricks_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_small_tiles",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_small_tiles_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_squares",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_squares_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_tiles",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_tiles_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_wavy",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_wavy_connecting"
+      },
+      {
+        "item": "rechiseled_compat:quark_orange_stained_woven",
+        "connecting_item": "rechiseled_compat:quark_orange_stained_woven_connecting"
+      }
+    ]
+}
