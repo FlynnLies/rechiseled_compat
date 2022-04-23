@@ -14,6 +14,10 @@ public class RechiseledCompat {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public RechiseledCompat() {
+		if(ModList.get().isLoaded("ars_nouveau")) {
+			ArsNouveauBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+			ArsNouveauItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		}
 		if(ModList.get().isLoaded("atmospheric")) {
 			AtmosphericBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
 			AtmosphericItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -62,6 +66,10 @@ public class RechiseledCompat {
 			GenericecoBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
 			GenericecoItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		}
+		if(ModList.get().isLoaded("naturesaura")) {
+			NaturesauraBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+			NaturesauraItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		}
 		if(ModList.get().isLoaded("outer_end")) {
 			OuterEndBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
 			OuterEndItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -69,6 +77,10 @@ public class RechiseledCompat {
 		if(ModList.get().isLoaded("quark")) {
 			QuarkBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
 			QuarkItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		}
+		if(ModList.get().isLoaded("tconstruct")) {
+			TconstructBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+			TconstructItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		}
 		if(ModList.get().isLoaded("traverse")) {
 			TraverseBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
