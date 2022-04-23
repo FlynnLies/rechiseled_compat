@@ -1,0 +1,69 @@
+{
+  "type": "rechiseled:chiseling",
+  "mod_id": "twilightforest",
+  "entries": [
+    {
+      "item": "twilightforest:planks_trans"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_beams",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_beams_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_bricks",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_bricks_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_crate",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_crate_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_diagonal_stripes",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_diagonal_stripes_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_diagonal_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_diagonal_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_dotted",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_dotted_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_flooring",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_flooring_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_large_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_large_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_pattern",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_pattern_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_small_bricks",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_small_bricks_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_small_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_small_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_squares",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_squares_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_wavy",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_wavy_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_trans_woven",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_trans_woven_connecting"
+    }
+  ]
+}

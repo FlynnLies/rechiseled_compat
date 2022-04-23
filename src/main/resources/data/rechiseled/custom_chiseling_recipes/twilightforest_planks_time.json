@@ -1,0 +1,69 @@
+{
+  "type": "rechiseled:chiseling",
+  "mod_id": "twilightforest",
+  "entries": [
+    {
+      "item": "twilightforest:planks_time"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_beams",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_beams_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_bricks",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_bricks_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_crate",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_crate_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_diagonal_stripes",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_diagonal_stripes_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_diagonal_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_diagonal_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_dotted",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_dotted_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_flooring",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_flooring_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_large_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_large_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_pattern",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_pattern_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_small_bricks",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_small_bricks_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_small_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_small_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_squares",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_squares_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_tiles",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_wavy",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_wavy_connecting"
+    },
+    {
+      "item": "rechiseled_compat:twilightforest_planks_time_woven",
+      "connecting_item": "rechiseled_compat:twilightforest_planks_time_woven_connecting"
+    }
+  ]
+}

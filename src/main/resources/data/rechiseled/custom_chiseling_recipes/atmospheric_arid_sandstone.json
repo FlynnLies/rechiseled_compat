@@ -1,0 +1,25 @@
+{
+  "type": "rechiseled:chiseling",
+  "mod_id": "atmospheric",
+  "entries": [
+    {
+      "item": "atmospheric:arid_sandstone"
+    },
+    {
+      "item": "rechiseled_compat:atmospheric_arid_sandstone_bricks",
+      "connecting_item": "rechiseled_compat:atmospheric_arid_sandstone_bricks_connecting"
+    },
+    {
+      "item": "rechiseled_compat:atmospheric_arid_sandstone_large_tiles",
+      "connecting_item": "rechiseled_compat:atmospheric_arid_sandstone_large_tiles_connecting"
+    },
+    {
+      "item": "rechiseled_compat:atmospheric_arid_sandstone_polished",
+      "connecting_item": "rechiseled_compat:atmospheric_arid_sandstone_polished_connecting"
+    },
+    {
+      "item": "rechiseled_compat:atmospheric_arid_sandstone_tiles",
+      "connecting_item": "rechiseled_compat:atmospheric_arid_sandstone_tiles_connecting"
+    }
+  ]
+}
