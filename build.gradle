@@ -105,7 +105,7 @@ repositories {
         url 'https://maven.blamejared.com'
     }
     maven {
-        url "https://www.cursemaven.com"
+        url "https://cfa2.cursemaven.com/"
         content {
             includeGroup "curse.maven"
         }
