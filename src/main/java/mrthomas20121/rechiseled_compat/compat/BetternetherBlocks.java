@@ -2,16 +2,16 @@ package mrthomas20121.rechiseled_compat.compat;
 
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.block.ChiseledBlock;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;import net.minecraftforge.registries.ForgeRegistries;
 public class BetternetherBlocks {
 
-    public static DeferredRegister<Block> BLOCKS = DeferredRegister.create(Block.class, RechiseledCompat.MOD_ID);
+    public static DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RechiseledCompat.MOD_ID);
 
     public static RegistryObject<Block>  BETTERNETHER_ANCHOR_TREE_PLANKS_BEAMS = BLOCKS.register("betternether_anchor_tree_planks_beams", ()-> new ChiseledBlock(false, getProperties()));
     public static RegistryObject<Block>  BETTERNETHER_ANCHOR_TREE_PLANKS_BEAMS_CONNECTING = BLOCKS.register("betternether_anchor_tree_planks_beams_connecting", ()-> new ChiseledBlock(true, getProperties()));
@@ -254,6 +254,6 @@ public class BetternetherBlocks {
     public static RegistryObject<Block>  BETTERNETHER_WILLOW_PLANKS_WOVEN = BLOCKS.register("betternether_willow_planks_woven", ()-> new ChiseledBlock(false, getProperties()));
     public static RegistryObject<Block>  BETTERNETHER_WILLOW_PLANKS_WOVEN_CONNECTING = BLOCKS.register("betternether_willow_planks_woven_connecting", ()-> new ChiseledBlock(true, getProperties()));
 
-    public static AbstractBlock.Properties getProperties() {
-        return AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);    }
+    public static BlockBehaviour.Properties getProperties() {
+        return BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);    }
 }

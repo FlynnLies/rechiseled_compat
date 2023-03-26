@@ -1,11 +1,12 @@
 package mrthomas20121.rechiseled_compat.compat;import mrthomas20121.rechiseled_compat.RechiseledCompat;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;import net.minecraft.item.ItemGroup;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;import net.minecraftforge.registries.ForgeRegistries;
 public class BygItems {
 
-    public static DeferredRegister<Item> ITEMS = DeferredRegister.create(Item.class, RechiseledCompat.MOD_ID);
+    public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RechiseledCompat.MOD_ID);
 
     public static RegistryObject<Item> BYG_ASPEN_PLANKS_BEAMS = ITEMS.register("byg_aspen_planks_beams", () -> new BlockItem(BygBlocks.BYG_ASPEN_PLANKS_BEAMS.get(), getProperties()));
     public static RegistryObject<Item> BYG_ASPEN_PLANKS_BEAMS_CONNECTING = ITEMS.register("byg_aspen_planks_beams_connecting", () -> new BlockItem(BygBlocks.BYG_ASPEN_PLANKS_BEAMS_CONNECTING.get(), getProperties()));
@@ -909,6 +910,6 @@ public class BygItems {
     public static RegistryObject<Item> BYG_ZELKOVA_PLANKS_WOVEN_CONNECTING = ITEMS.register("byg_zelkova_planks_woven_connecting", () -> new BlockItem(BygBlocks.BYG_ZELKOVA_PLANKS_WOVEN_CONNECTING.get(), getProperties()));
 
     public static Item.Properties getProperties() {
-        return new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS);
+        return new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS);
     }
 }

@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
         maven {
             name = "sonatype"
@@ -15,16 +15,16 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
+// apply plugin: 'eclipse'
 
 version = rechiseled_compat_version
 group = 'mrthomas20121.rechiseled_compat'
 archivesBaseName = 'Rechiseled Compat'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: '1.19.2'
 
     runs {
         client {
@@ -62,33 +62,36 @@ minecraft {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:1.16.5-${forge_version}"
+    // minecraft 'net.minecraftforge:forge:1.19.4-45.0.24'
+    minecraft "net.minecraftforge:forge:1.19.2-${forge_version}"
+
 	
     // Core lib
-    implementation fg.deobf('curse.maven:supermartijn642s-core-lib-454372:3596490')
+    implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:${supermartijn_core_version}")
+
     // Config lib
-    implementation fg.deobf('curse.maven:supermartijn642s-config-lib-438332:3413938')
+    implementation fg.deobf("curse.maven:supermartijn642s-config-lib-438332:${supermartijn_config_version}")
 
     // rechiseled
-    implementation fg.deobf('curse.maven:rechiseled-558998:3669013')
+    implementation fg.deobf("curse.maven:rechiseled-558998:${rechiseled_version}")
 
     // genericeco
-    implementation fg.deobf('curse.maven:generic-ecosphere-487769:3559153')
+    //implementation fg.deobf('curse.maven:generic-ecosphere-487769:${genericeco_version}')
 
     // autoregLib
-    implementation fg.deobf('curse.maven:autoreglib-250363:3326041')
+    implementation fg.deobf("curse.maven:autoreglib-250363:${autoregLib_version}")
 
     // quark
-    implementation fg.deobf('curse.maven:quark-243121:3538744')
+    implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
 
     // Just Enough Items
-    implementation fg.deobf('curse.maven:jei-238222:3564654')
+    implementation fg.deobf("curse.maven:jei-238222:${jei_version}")
 
     // Block Renderer
-    runtimeOnly fg.deobf('curse.maven:block-renderer-380456:3294692')
+    //runtimeOnly fg.deobf("curse.maven:block-renderer-380456:${blockRenderer_version}")
 
-    implementation fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tcon_version}")
-    implementation fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
+    // implementation fg.deobf("curse.maven:tinkers-74072:${tcon_version}")
+    // implementation fg.deobf("curse.maven:mantle-74924:${mantle_version}")
 }
 
 repositories {
@@ -127,3 +130,7 @@ jar {
 }
 
 jar.finalizedBy('reobfJar')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}

@@ -1,11 +1,14 @@
-package mrthomas20121.rechiseled_compat.compat;import mrthomas20121.rechiseled_compat.RechiseledCompat;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;import net.minecraft.item.ItemGroup;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
+package mrthomas20121.rechiseled_compat.compat;
+
+import mrthomas20121.rechiseled_compat.RechiseledCompat;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;import net.minecraftforge.registries.ForgeRegistries;
 public class AtmosphericItems {
 
-    public static DeferredRegister<Item> ITEMS = DeferredRegister.create(Item.class, RechiseledCompat.MOD_ID);
+    public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RechiseledCompat.MOD_ID);
 
     public static RegistryObject<Item> ATMOSPHERIC_ARID_SANDSTONE_BRICKS = ITEMS.register("atmospheric_arid_sandstone_bricks", () -> new BlockItem(AtmosphericBlocks.ATMOSPHERIC_ARID_SANDSTONE_BRICKS.get(), getProperties()));
     public static RegistryObject<Item> ATMOSPHERIC_ARID_SANDSTONE_BRICKS_CONNECTING = ITEMS.register("atmospheric_arid_sandstone_bricks_connecting", () -> new BlockItem(AtmosphericBlocks.ATMOSPHERIC_ARID_SANDSTONE_BRICKS_CONNECTING.get(), getProperties()));
@@ -197,6 +200,6 @@ public class AtmosphericItems {
     public static RegistryObject<Item> ATMOSPHERIC_YUCCA_PLANKS_WOVEN_CONNECTING = ITEMS.register("atmospheric_yucca_planks_woven_connecting", () -> new BlockItem(AtmosphericBlocks.ATMOSPHERIC_YUCCA_PLANKS_WOVEN_CONNECTING.get(), getProperties()));
 
     public static Item.Properties getProperties() {
-        return new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS);
+        return new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS);
     }
 }

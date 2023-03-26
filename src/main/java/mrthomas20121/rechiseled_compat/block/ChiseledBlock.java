@@ -1,12 +1,12 @@
 package mrthomas20121.rechiseled_compat.block;
 
 import com.supermartijn642.core.TextComponents;
-import net.minecraft.block.Block;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.BlockGetter;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,10 +20,10 @@ public class ChiseledBlock extends Block {
         this.connecting = connecting;
     }
 
-    public void appendHoverText(@Nonnull ItemStack stack, @Nullable IBlockReader world, @Nonnull List<ITextComponent> text, @Nonnull ITooltipFlag flag) {
+    public void appendHoverText(@Nonnull ItemStack stack, @Nullable BlockGetter world, @Nonnull List<Component> text, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, world, text, flag);
         if (this.connecting) {
-            text.add(TextComponents.translation("rechiseled.tooltip.connecting").color(TextFormatting.GRAY).get());
+            text.add(TextComponents.translation("rechiseled.tooltip.connecting").color(ChatFormatting.GRAY).get());
         }
 
     }

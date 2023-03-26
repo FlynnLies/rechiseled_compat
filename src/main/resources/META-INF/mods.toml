@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[43,)"
 license="MIT License"
 issueTrackerURL="https://github.com/Mrthomas20121/rechiseled_compat/issues"
 
@@ -17,13 +17,13 @@ Add other mods support to Rechiseled
 [[dependencies.rechiseled_compat]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2.22,)"
+    versionRange="[43.2.4,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.rechiseled_compat]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,)"
+    versionRange="[1.19.2,)"
     ordering="NONE"
     side="BOTH"

@@ -7,10 +7,10 @@ import com.google.gson.JsonObject;
 import com.supermartijn642.rechiseled.chiseling.ChiselingRecipe;
 import com.supermartijn642.rechiseled.chiseling.ChiselingRecipeLoader;
 import com.supermartijn642.rechiseled.chiseling.ChiselingRecipes;
-import net.minecraft.client.resources.JsonReloadListener;
-import net.minecraft.profiler.IProfiler;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = RechiseledCompat.MOD_ID)
-public class CustomChiselingRecipeLoader extends JsonReloadListener {
+public class CustomChiselingRecipeLoader extends SimpleJsonResourceReloadListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onAddReloadListener(AddReloadListenerEvent e){
@@ -39,7 +39,7 @@ public class CustomChiselingRecipeLoader extends JsonReloadListener {
     }
 
     @Override
-    protected void apply(@Nonnull Map<ResourceLocation, JsonElement> entries, @Nonnull IResourceManager resourceManager, @Nonnull IProfiler profilerFiller) {
+    protected void apply(@Nonnull Map<ResourceLocation, JsonElement> entries, @Nonnull ResourceManager resourceManager, @Nonnull ProfilerFiller profilerFiller) {
         List<ChiselingRecipe> recipes = new ArrayList<>();
         for(Map.Entry<ResourceLocation,JsonElement> entry : entries.entrySet()){
             JsonObject object = entry.getValue().getAsJsonObject();
