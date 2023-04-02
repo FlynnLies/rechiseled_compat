@@ -1,102 +1,60 @@
 package mrthomas20121.rechiseled_compat;
 
 import mrthomas20121.rechiseled_compat.compat.*;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
+import mrthomas20121.rechiseled_compat.core.Core;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(RechiseledCompat.MOD_ID)
+@net.minecraftforge.fml.common.Mod(RechiseledCompat.MOD_ID)
 public class RechiseledCompat {
+
+	/**
+	 * Load all the mods even when their base mod is not installed.
+	 * most likely you will want to use this when generating data via
+	 * {@link net.minecraft.data.DataGenerator} but you can also use it
+	 * to simply unlock all the blocks.
+	 */
+	private static final Boolean RUN_DATA = false;
 
 	public static final String MOD_ID = "rechiseled_compat";
 	public static final Logger LOGGER = LogManager.getLogger();
 
+
 	public RechiseledCompat() {
-		if(ModList.get().isLoaded("ars_nouveau")) {
-			ArsNouveauBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			ArsNouveauItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("atmospheric")) {
-			AtmosphericBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			AtmosphericItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("atum")) {
-			AtumBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			AtumItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("bayou_blues")) {
-			BayouBluesBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			BayouBluesItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("betterendforge")) {
-			BetterendforgeBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			BetterendforgeItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("betternether")) {
-			BetternetherBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			BetternetherItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("biomesoplenty")) {
-			BiomesoplentyBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			BiomesoplentyItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("blue_skies")) {
-			BlueSkiesBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			BlueSkiesItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("byg")) {
-			BygBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			BygItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("druidcraft")) {
-			DruidcraftBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			DruidcraftItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("endergetic")) {
-			EndergeticBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			EndergeticItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("environmental")) {
-			EnvironmentalBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			EnvironmentalItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("genericeco")) {
-			GenericecoBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			GenericecoItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("naturesaura")) {
-			NaturesauraBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			NaturesauraItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("outer_end")) {
-			OuterEndBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			OuterEndItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("quark")) {
-			QuarkBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			QuarkItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("tconstruct")) {
-			TconstructBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			TconstructItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("traverse")) {
-			TraverseBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			TraverseItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("tropicraft")) {
-			TropicraftBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			TropicraftItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("twilightforest")) {
-			TwilightforestBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			TwilightforestItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-		}
-		if(ModList.get().isLoaded("undergarden")) {
-			UndergardenBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-			UndergardenItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
+		load(Mod.getInstance(ArsNouveau.class));
+		load(Mod.getInstance(Atmospheric.class));
+		load(Mod.getInstance(Atum.class));
+		load(Mod.getInstance(BayouBlue.class));
+		load(Mod.getInstance(Betterendforge.class));
+		load(Mod.getInstance(Betternether.class));
+		load(Mod.getInstance(Biomesoplenty.class));
+		load(Mod.getInstance(BlueSkies.class));
+		load(Mod.getInstance(Byg.class));
+		load(Mod.getInstance(Druidcraft.class));
+		load(Mod.getInstance(Endergetic.class));
+		load(Mod.getInstance(Environmental.class));
+		load(Mod.getInstance(Genericeco.class));
+		load(Mod.getInstance(Naturesaura.class));
+		load(Mod.getInstance(OuterEnd.class));
+
+		/* Quark does not have stained planks in 1.19 (yet?) */
+		load(Mod.getInstance(Quark.class));
+
+		load(Mod.getInstance(Tconstruct.class));
+		load(Mod.getInstance(Traverse.class));
+		load(Mod.getInstance(Tropicraft.class));
+		load(Mod.getInstance(Twilightforest.class));
+		load(Mod.getInstance(Undergarden.class));
+
+		Core.register(FMLJavaModLoadingContext.get().getModEventBus(), MinecraftForge.EVENT_BUS);
+	}
+
+	private static void load(Mod mod) {
+		if (Core.isModLoaded(mod.getModId()) || RUN_DATA) {
+			mod.registerBlocks();
 		}
 	}
 }

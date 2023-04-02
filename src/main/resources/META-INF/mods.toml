@@ -5,13 +5,13 @@ issueTrackerURL="https://github.com/Mrthomas20121/rechiseled_compat/issues"
 
 [[mods]]
 modId="rechiseled_compat"
-version="1.0.4"
+version="1.0.5"
 displayName="Rechiseled Compat"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/rechiseled_compat"
 #logoFile="tinkers_reforged_logo.png"
-authors="Mrthomas20121"
+authors="FlynnLies, Mrthomas20121"
 description='''
-Add other mods support to Rechiseled
+Adds support for other mods to Rechiseled.
 '''
 
 [[dependencies.rechiseled_compat]]
@@ -25,5 +25,12 @@ Add other mods support to Rechiseled
     modId="minecraft"
     mandatory=true
     versionRange="[1.19.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.rechiseled_compat]]
+    modId="rechiseled"
+    mandatory=true
+    versionRange="[1.0.12a,)"
     ordering="NONE"
     side="BOTH"

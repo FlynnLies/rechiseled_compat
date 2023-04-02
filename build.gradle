@@ -17,7 +17,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 // apply plugin: 'eclipse'
 
-version = rechiseled_compat_version
+version = mod_version
 group = 'mrthomas20121.rechiseled_compat'
 archivesBaseName = 'Rechiseled Compat'
 
@@ -27,6 +27,31 @@ minecraft {
     mappings channel: 'official', version: '1.19.2'
 
     runs {
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            // to support mixins
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', "${mod_id}",
+                    '--all',
+                    '--output', file('src/generated/resources/'),
+                    '--existing', file('src/main/resources/')
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
         client {
             workingDirectory project.file('run')
 
@@ -38,7 +63,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                rechiseled_ecosphere {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -53,7 +78,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                rechiseled_ecosphere {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
@@ -79,10 +104,10 @@ dependencies {
     //implementation fg.deobf('curse.maven:generic-ecosphere-487769:${genericeco_version}')
 
     // autoregLib
-    implementation fg.deobf("curse.maven:autoreglib-250363:${autoregLib_version}")
+    //implementation fg.deobf("curse.maven:autoreglib-250363:${autoregLib_version}")
 
     // quark
-    implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
+    //implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
 
     // Just Enough Items
     implementation fg.deobf("curse.maven:jei-238222:${jei_version}")

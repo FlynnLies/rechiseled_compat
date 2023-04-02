@@ -27,3 +27,4 @@ forge*changelog.txt
 lombok.config
 
 src/generated/resources/.cache/
+/src/generated/

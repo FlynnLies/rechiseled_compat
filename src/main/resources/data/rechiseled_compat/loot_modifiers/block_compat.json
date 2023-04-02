@@ -1,0 +1,9 @@
+{
+  "type" : "rechiseled_compat:add_item",
+  "conditions": [
+    {
+      "condition": "rechiseled_compat:loot_table_namespace",
+      "loot_table_namespace": "rechiseled_compat"
+    }
+  ]
+}
