@@ -19,7 +19,7 @@ apply plugin: 'net.minecraftforge.gradle'
 
 version = mod_version
 group = 'mrthomas20121.rechiseled_compat'
-archivesBaseName = 'Rechiseled Compat'
+archivesBaseName = 'Rechiseled_Compat'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
