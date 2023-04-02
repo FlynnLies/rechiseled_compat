@@ -25,7 +25,6 @@ public class Core {
      * Enables more debug output.
      */
     public static final Boolean DEBUG = false;
-    public static final ArrayList<String> MOD_ID_LIST = new ArrayList<>();
     public static final ArrayList<Mod> MOD_LIST = new ArrayList<>();
 
     /**
@@ -55,16 +54,15 @@ public class Core {
     }
 
 
-    public static boolean addMod(Mod mod) {
+    public static void addMod(Mod mod) {
         MOD_LIST.add(mod);
-        return isModLoaded(mod.getModId());
     }
 
     /**
      * Checks if a mod is loaded.
      *
      * @param modId Mod id to check.
-     * @return
+     * @return If the mod is loaded.
      */
     public static boolean isModLoaded(String modId) {
         return ModList.get().isLoaded(modId);
@@ -75,8 +73,8 @@ public class Core {
      * Tries to add a new block to the registry and applying behaviour from a template block and
      * skips without error if the parent block is not found.
      *
-     * @param template_block_id
-     * @param new_block_id
+     * @param template_block_id The block to copy properties from. Will also be used when collecting tags.
+     * @param new_block_id The block to copy to.
      */
     public static void registerBlock(String template_block_id, String new_block_id) {
         DataHandler.registerBlock(template_block_id, new_block_id, COLLECT_TAGS);

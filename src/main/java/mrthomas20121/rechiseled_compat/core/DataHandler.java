@@ -4,7 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.block.ChiseledBlock;
 import net.minecraft.core.Holder;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,18 +33,32 @@ import java.util.stream.Stream;
 
 public class DataHandler {
 
-    private static final CreativeModeTab CONNECTING_TAB = new CreativeModeTab("REchiseled Connecting") {
+    // the labels still have to be translated in the lang folder into actual names
+    private static final CreativeModeTab CONNECTING_TAB = new CreativeModeTab("rechisled_compat_connecting") {
         @Override
         public @NotNull ItemStack makeIcon() {
-            Item item = Core.getItems().getEntries().iterator().next().get();
+            Item item;
+            if (Core.getItems().getEntries().size() > 0) {
+                Iterator<RegistryObject<Item>> iterator = Core.getItems().getEntries().iterator();
+                for (int i = 0; i<30; i++) {iterator.next();} // skip to the next block (has about 30 variations [common + connecting])
+                item = iterator.next().get();
+            } else {
+                item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft", "barrier"));
+            }
+
             return new ItemStack(item);
         }
     };
 
-    private static final CreativeModeTab COMMON_TAB = new CreativeModeTab("REchiseled Common") {
+    private static final CreativeModeTab COMMON_TAB = new CreativeModeTab("rechisled_compat_common") {
         @Override
         public @NotNull ItemStack makeIcon() {
-            Item item = Core.getItems().getEntries().iterator().next().get();
+            Item item;
+            if (Core.getItems().getEntries().size() > 0) {
+                item = Core.getItems().getEntries().iterator().next().get();
+            } else {
+                item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft", "barrier"));
+            }
             return new ItemStack(item);
         }
     };
@@ -133,7 +145,11 @@ public class DataHandler {
 
         Optional<Holder<Block>> optional = ForgeRegistries.BLOCKS.getHolder(parent);
         if (optional.isPresent() && parent != null) {
+            // register the block
             RegistryObject<Block> block = BLOCKS.register(new_block_id, () -> new ChiseledBlock(false, getBlockProperties(parent)));
+
+            // register the item
+            @SuppressWarnings("unused")
             RegistryObject<Item> item = ITEMS.register(new_block_id, () -> new BlockItem(block.get(), getItemProperties(block.get())));
 
             if (collect_tags) {
@@ -145,6 +161,7 @@ public class DataHandler {
         }
     }
 
+    @SuppressWarnings("DataFlowIssue")
     private static BlockBehaviour.Properties getBlockProperties(Block parent) {
 
         BlockState parent_state = parent.defaultBlockState();

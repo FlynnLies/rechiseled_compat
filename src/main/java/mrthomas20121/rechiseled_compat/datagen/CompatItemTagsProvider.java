@@ -2,7 +2,6 @@ package mrthomas20121.rechiseled_compat.datagen;
 
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.compat.Mod;
-import mrthomas20121.rechiseled_compat.compat.Quark;
 import mrthomas20121.rechiseled_compat.core.Core;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;

@@ -39,7 +39,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            // Specify the mod id for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', "${mod_id}",
                     '--all',
                     '--output', file('src/generated/resources/'),
@@ -87,10 +87,8 @@ minecraft {
 }
 
 dependencies {
-    // minecraft 'net.minecraftforge:forge:1.19.4-45.0.24'
     minecraft "net.minecraftforge:forge:1.19.2-${forge_version}"
 
-	
     // Core lib
     implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:${supermartijn_core_version}")
 
@@ -100,23 +98,8 @@ dependencies {
     // rechiseled
     implementation fg.deobf("curse.maven:rechiseled-558998:${rechiseled_version}")
 
-    // genericeco
-    //implementation fg.deobf('curse.maven:generic-ecosphere-487769:${genericeco_version}')
-
-    // autoregLib
-    //implementation fg.deobf("curse.maven:autoreglib-250363:${autoregLib_version}")
-
-    // quark
-    //implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
-
     // Just Enough Items
     implementation fg.deobf("curse.maven:jei-238222:${jei_version}")
-
-    // Block Renderer
-    //runtimeOnly fg.deobf("curse.maven:block-renderer-380456:${blockRenderer_version}")
-
-    // implementation fg.deobf("curse.maven:tinkers-74072:${tcon_version}")
-    // implementation fg.deobf("curse.maven:mantle-74924:${mantle_version}")
 }
 
 repositories {

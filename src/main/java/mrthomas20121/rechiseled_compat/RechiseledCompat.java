@@ -40,8 +40,14 @@ public class RechiseledCompat {
 		load(Mod.getInstance(Naturesaura.class));
 		load(Mod.getInstance(OuterEnd.class));
 
-		/* Quark does not have stained planks in 1.19 (yet?) */
-		load(Mod.getInstance(Quark.class));
+		// Quark does not have stained planks in 1.19 and that's all this adds
+		// Also leads to some visual glitches in the chisel gui if you try to add them
+		// anyway
+		// Either way I feel this is just cluttering the blocks for no good reason
+		// Can't craft them in survival after all
+		if (RUN_DATA) {
+			load(Mod.getInstance(Quark.class));
+		}
 
 		load(Mod.getInstance(Tconstruct.class));
 		load(Mod.getInstance(Traverse.class));
