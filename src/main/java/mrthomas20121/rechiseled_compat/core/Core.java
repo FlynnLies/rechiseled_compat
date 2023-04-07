@@ -88,9 +88,8 @@ public class Core {
     public static void addBlockTags(CompatForgeTagsProvider<Block> provider, String[] blocks, String[] tags) {
         for (String tagName : tags) {
             TagKey<Block> key = BlockTags.create(new ResourceLocation(tagName));
-            for (String blockId : blocks) {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(RechiseledCompat.MOD_ID, blockId));
-                provider.addTag(key, block);
+            for (String id : blocks) {
+                provider.addOptionalTag(key, new ResourceLocation(RechiseledCompat.MOD_ID, id));
             }
         }
     }
@@ -99,8 +98,7 @@ public class Core {
         for (String tagName : tags) {
             TagKey<Item> key = ItemTags.create(new ResourceLocation(tagName));
             for (String id : items) {
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(RechiseledCompat.MOD_ID, id));
-                provider.addTag(key, item);
+                provider.addOptionalTag(key, new ResourceLocation(RechiseledCompat.MOD_ID, id));
             }
         }
     }

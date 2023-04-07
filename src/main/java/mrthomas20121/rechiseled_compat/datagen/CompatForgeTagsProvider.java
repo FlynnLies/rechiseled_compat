@@ -1,6 +1,7 @@
 package mrthomas20121.rechiseled_compat.datagen;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeRegistryTagsProvider;
@@ -23,6 +24,8 @@ public class CompatForgeTagsProvider<T> extends ForgeRegistryTagsProvider<T> {
     public void addTag(TagKey<T> tag, T value) {
         this.tag(tag).add(value);
     }
+
+    public void addOptionalTag(TagKey<T> tag, ResourceLocation location) {this.tag(tag).addOptional(location);}
 
     public Class<T> getType() {
         // Return the type parameter of the class

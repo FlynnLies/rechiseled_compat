@@ -10,7 +10,7 @@
 ### 1.1.x
 - Recipe and tool support
 
-### 1.2.x (WIP)
+### 1.2.x (planned)
 - Stone blocks from selected mods
 
 ## Minecraft Versions
@@ -21,7 +21,7 @@
 
 * 1.18.2 (1.1.2)
 
-* 1.19.2 (1.1.1)
+* 1.19.2 (1.1.2)
 
 * after 1.19.2 (we will see)
 
