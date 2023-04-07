@@ -1,9 +1,6 @@
 package mrthomas20121.rechiseled_compat.loot;
 
-import com.google.common.base.Suppliers;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import com.google.gson.JsonObject;
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.core.Core;
 import net.minecraft.resources.ResourceLocation;
@@ -11,25 +8,22 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.IGlobalLootModifier;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class CompatBlockLootModifier extends LootModifier {
-
-    public static final Supplier<Codec<CompatBlockLootModifier>> CODEC = Suppliers.memoize(()
-            -> RecordCodecBuilder.create(inst -> codecStart(inst).apply(inst, CompatBlockLootModifier::new)));
 
     protected CompatBlockLootModifier(LootItemCondition[] conditionsIn) {
         super(conditionsIn);
     }
 
+    @Nonnull
     @Override
-    protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-
+    protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
         if (Core.DEBUG) {
             System.out.printf("Loot Table ID: %s\n", context.getQueriedLootTableId().getPath());
         }
@@ -49,8 +43,16 @@ public class CompatBlockLootModifier extends LootModifier {
         return generatedLoot;
     }
 
-    @Override
-    public Codec<? extends IGlobalLootModifier> codec() {
-        return CODEC.get();
+    public static class Serializer extends GlobalLootModifierSerializer<CompatBlockLootModifier> {
+
+        @Override
+        public CompatBlockLootModifier read(ResourceLocation name, JsonObject object, LootItemCondition[] conditionsIn) {
+            return new CompatBlockLootModifier(conditionsIn);
+        }
+
+        @Override
+        public JsonObject write(CompatBlockLootModifier instance) {
+            return makeConditions(instance.conditions);
+        }
     }
 }

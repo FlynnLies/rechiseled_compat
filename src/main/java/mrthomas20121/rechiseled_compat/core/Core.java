@@ -3,8 +3,6 @@ package mrthomas20121.rechiseled_compat.core;
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.compat.Mod;
 import mrthomas20121.rechiseled_compat.datagen.CompatForgeTagsProvider;
-import mrthomas20121.rechiseled_compat.loot.LootModifiers;
-import mrthomas20121.rechiseled_compat.loot.NamespaceCondition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -14,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
@@ -45,12 +42,9 @@ public class Core {
      */
     public static void register(IEventBus loadingBus, IEventBus gameBus) {
         DataHandler.register(loadingBus);
-        LootModifiers.register(loadingBus);
-        loadingBus.addListener(NamespaceCondition::register);
         if (COLLECT_TAGS) {
             DataHandler.listener(gameBus);
         }
-
     }
 
 
@@ -89,8 +83,7 @@ public class Core {
         for (String tagName : tags) {
             TagKey<Block> key = BlockTags.create(new ResourceLocation(tagName));
             for (String blockId : blocks) {
-                Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(RechiseledCompat.MOD_ID, blockId));
-                provider.addTag(key, block);
+                provider.addOptionalTag(key, new ResourceLocation(RechiseledCompat.MOD_ID, blockId));
             }
         }
     }
@@ -99,8 +92,7 @@ public class Core {
         for (String tagName : tags) {
             TagKey<Item> key = ItemTags.create(new ResourceLocation(tagName));
             for (String id : items) {
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(RechiseledCompat.MOD_ID, id));
-                provider.addTag(key, item);
+                provider.addOptionalTag(key, new ResourceLocation(RechiseledCompat.MOD_ID, id));
             }
         }
     }

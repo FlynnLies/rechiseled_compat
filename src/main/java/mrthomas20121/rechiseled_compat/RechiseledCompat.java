@@ -24,41 +24,33 @@ public class RechiseledCompat {
 
 	public RechiseledCompat() {
 
-		load(Mod.getInstance(ArsNouveau.class));
-		load(Mod.getInstance(Atmospheric.class));
-		load(Mod.getInstance(Atum.class));
-		load(Mod.getInstance(BayouBlue.class));
-		load(Mod.getInstance(Betterendforge.class));
-		load(Mod.getInstance(Betternether.class));
-		load(Mod.getInstance(Biomesoplenty.class));
-		load(Mod.getInstance(BlueSkies.class));
-		load(Mod.getInstance(Byg.class));
-		load(Mod.getInstance(Druidcraft.class));
-		load(Mod.getInstance(Endergetic.class));
-		load(Mod.getInstance(Environmental.class));
-		load(Mod.getInstance(Genericeco.class));
-		load(Mod.getInstance(Naturesaura.class));
-		load(Mod.getInstance(OuterEnd.class));
-
-		// Quark does not have stained planks in 1.19 and that's all this adds
-		// Also leads to some visual glitches in the chisel gui if you try to add them
-		// anyway
-		// Either way I feel this is just cluttering the blocks for no good reason
-		// Can't craft them in survival after all
-		if (RUN_DATA) {
-			load(Mod.getInstance(Quark.class));
-		}
-
-		load(Mod.getInstance(Tconstruct.class));
-		load(Mod.getInstance(Traverse.class));
-		load(Mod.getInstance(Tropicraft.class));
-		load(Mod.getInstance(Twilightforest.class));
-		load(Mod.getInstance(Undergarden.class));
+		load(ArsNouveau.class);
+		load(Atmospheric.class);
+		load(Atum.class);
+		load(BayouBlue.class);
+		load(Betterendforge.class);
+		load(Betternether.class);
+		load(Biomesoplenty.class);
+		load(BlueSkies.class);
+		load(Byg.class);
+		load(Druidcraft.class);
+		load(Endergetic.class);
+		load(Environmental.class);
+		load(Genericeco.class);
+		load(Naturesaura.class);
+		load(OuterEnd.class);
+		load(Quark.class);
+		load(Tconstruct.class);
+		load(Traverse.class);
+		load(Tropicraft.class);
+		load(Twilightforest.class);
+		load(Undergarden.class);
 
 		Core.register(FMLJavaModLoadingContext.get().getModEventBus(), MinecraftForge.EVENT_BUS);
 	}
 
-	private static void load(Mod mod) {
+	private static void load(Class<? extends Mod> modClass) {
+		Mod mod = Mod.getInstance(modClass);
 		if (Core.isModLoaded(mod.getModId()) || RUN_DATA) {
 			mod.registerBlocks();
 		}

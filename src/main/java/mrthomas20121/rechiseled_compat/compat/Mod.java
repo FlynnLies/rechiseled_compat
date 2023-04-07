@@ -2,6 +2,7 @@ package mrthomas20121.rechiseled_compat.compat;
 
 import mrthomas20121.rechiseled_compat.core.Core;
 import mrthomas20121.rechiseled_compat.datagen.CompatForgeTagsProvider;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -42,6 +43,6 @@ public abstract class Mod {
 
     public abstract void registerBlocks();
 
-    public abstract <T> void addTags(CompatForgeTagsProvider<T> provider);
+    public abstract <T extends IForgeRegistryEntry<T>> void addTags(CompatForgeTagsProvider<T> provider);
 
 }

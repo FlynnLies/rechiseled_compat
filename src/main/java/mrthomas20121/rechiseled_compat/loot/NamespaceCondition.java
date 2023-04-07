@@ -11,7 +11,9 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import net.minecraftforge.registries.RegisterEvent;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import org.jetbrains.annotations.NotNull;
 
 /*
  {
@@ -24,7 +26,7 @@ import net.minecraftforge.registries.RegisterEvent;
 public class NamespaceCondition implements LootItemCondition {
 
     public static final String CONDITION_ID = "loot_table_namespace";
-    private static final LootItemConditionType LOOT_TABLE_NAMESPACE = new LootItemConditionType(new NamespaceCondition.Serializer());
+    public static final LootItemConditionType LOOT_CONDITION_TYPE = new LootItemConditionType(new NamespaceCondition.Serializer());
 
 
     private final String namespace;
@@ -37,16 +39,9 @@ public class NamespaceCondition implements LootItemCondition {
         return new Builder(namespace);
     }
 
-    public static void register(RegisterEvent event) {
-        if (!event.getRegistryKey().equals(Registry.LOOT_ITEM_REGISTRY))
-            return;
-
-        event.register(Registry.LOOT_ITEM_REGISTRY, new ResourceLocation(RechiseledCompat.MOD_ID, CONDITION_ID), () -> NamespaceCondition.LOOT_TABLE_NAMESPACE);
-    }
-
     @Override
-    public LootItemConditionType getType() {
-        return LOOT_TABLE_NAMESPACE;
+    public @NotNull LootItemConditionType getType() {
+        return LOOT_CONDITION_TYPE;
     }
 
     @Override

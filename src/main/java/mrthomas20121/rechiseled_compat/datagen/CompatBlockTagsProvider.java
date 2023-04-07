@@ -21,6 +21,12 @@ public class CompatBlockTagsProvider extends CompatForgeTagsProvider<Block> {
             mod.addTags(this);
         }
     }
+
+
+    @Override
+    public String getName() {
+        return "CompatBlockTagsProvider";
+    }
 }
 
 

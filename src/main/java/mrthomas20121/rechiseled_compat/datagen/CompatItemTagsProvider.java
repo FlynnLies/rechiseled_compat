@@ -22,6 +22,11 @@ public class CompatItemTagsProvider extends CompatForgeTagsProvider<Item> {
         }
     }
 
+    @Override
+    public String getName() {
+        return "CompatItemTagsProvider";
+    }
+
 
 }
 

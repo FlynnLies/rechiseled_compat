@@ -4,6 +4,7 @@ import mrthomas20121.rechiseled_compat.core.Core;
 import mrthomas20121.rechiseled_compat.datagen.CompatForgeTagsProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public class BlueSkies extends Mod {
     public static final String[] PLANKS = {
@@ -175,7 +176,7 @@ public class BlueSkies extends Mod {
     }
 
     // for data generation
-    public <T> void addTags(CompatForgeTagsProvider<T> provider) {
+    public <T extends IForgeRegistryEntry<T>> void addTags(CompatForgeTagsProvider<T> provider) {
         // from minecraft:oak_planks
 
         provider.whenType(Block.class, Core::addBlockTags, PLANKS, new String[]{
