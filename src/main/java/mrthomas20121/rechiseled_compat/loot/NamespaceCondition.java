@@ -5,7 +5,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -38,10 +38,12 @@ public class NamespaceCondition implements LootItemCondition {
     }
 
     public static void register(RegisterEvent event) {
-        if (!event.getRegistryKey().equals(Registry.LOOT_ITEM_REGISTRY))
+        if (!event.getRegistryKey().equals(Registries.LOOT_CONDITION_TYPE))
             return;
 
-        event.register(Registry.LOOT_ITEM_REGISTRY, new ResourceLocation(RechiseledCompat.MOD_ID, CONDITION_ID), () -> NamespaceCondition.LOOT_TABLE_NAMESPACE);
+        event.getVanillaRegistry();
+
+        event.register(Registries.LOOT_CONDITION_TYPE, new ResourceLocation(RechiseledCompat.MOD_ID, CONDITION_ID), () -> NamespaceCondition.LOOT_TABLE_NAMESPACE);
     }
 
     @Override

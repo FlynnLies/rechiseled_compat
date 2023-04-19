@@ -16,7 +16,7 @@ public class RechiseledCompat {
 	 * {@link net.minecraft.data.DataGenerator} but you can also use it
 	 * to simply unlock all the blocks.
 	 */
-	private static final Boolean RUN_DATA = true;
+	private static final Boolean RUN_DATA = false;
 
 	public static final String MOD_ID = "rechiseled_compat";
 	public static final Logger LOGGER = LogManager.getLogger();

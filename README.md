@@ -23,7 +23,9 @@
 
 * 1.19.2 (1.1.2)
 
-* after 1.19.2 (we will see)
+* 1.19.3 (1.1.2)
+
+* after 1.19.3 (we will see)
 
 ## Supported mods
 - Ars Nouveau

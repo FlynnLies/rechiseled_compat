@@ -1,9 +1,10 @@
 package mrthomas20121.rechiseled_compat.compat;
 
+import com.mojang.datafixers.util.Pair;
 import mrthomas20121.rechiseled_compat.core.Core;
-import mrthomas20121.rechiseled_compat.datagen.CompatForgeTagsProvider;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+
+import java.util.Collection;
+import java.util.List;
 
 public class Tropicraft extends Mod {
     public static final String[] PLANKS = {
@@ -115,16 +116,26 @@ public class Tropicraft extends Mod {
     }
 
     // for data generation
-    public <T> void addTags(CompatForgeTagsProvider<T> provider) {
-        // from minecraft:oak_planks
+    @Override
+    public Collection<Pair<String[], String[]>> getBlockTags() {
+        return List.of(
+                Pair.of(PLANKS, new String[]{
+                    "minecraft:planks",
+                    "minecraft:mineable/axe"
+                })/*,
+                Pair.of(STONES, new String[]{
+                    ...
+                })*/
+        );
+    }
 
-        provider.whenType(Block.class, Core::addBlockTags, PLANKS, new String[]{
-                "minecraft:planks",
-                "minecraft:mineable/axe"
-        });
-
-        provider.whenType(Item.class, Core::addItemTags, PLANKS, new String[]{
-                "minecraft:planks",
-        });
+    // for data generation
+    @Override
+    public Collection<Pair<String[], String[]>> getItemTags() {
+        return List.of(
+                Pair.of(PLANKS, new String[]{
+                        "minecraft:planks",
+                })
+        );
     }
 }

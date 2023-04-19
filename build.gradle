@@ -19,12 +19,12 @@ apply plugin: 'net.minecraftforge.gradle'
 
 version = mod_version
 group = 'mrthomas20121.rechiseled_compat'
-archivesBaseName = 'Rechiseled_Compat'
+archivesBaseName = "Rechiseled_Compat-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.19.2'
+    mappings channel: 'official', version: '1.19.3'
 
     runs {
 
@@ -87,7 +87,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:1.19.2-${forge_version}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // Core lib
     implementation fg.deobf("curse.maven:supermartijn642s-core-lib-454372:${supermartijn_core_version}")
@@ -100,6 +100,10 @@ dependencies {
 
     // Just Enough Items
     implementation fg.deobf("curse.maven:jei-238222:${jei_version}")
+
+    // Biomes O' Plenty
+    implementation fg.deobf("curse.maven:bop-220318:${bop_version}")
+    implementation fg.deobf("curse.maven:terrablender-563928:${terra_blender_version}")
 }
 
 repositories {

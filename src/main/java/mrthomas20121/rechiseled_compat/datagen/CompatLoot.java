@@ -1,7 +1,8 @@
 package mrthomas20121.rechiseled_compat.datagen;
 
 import mrthomas20121.rechiseled_compat.core.Core;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -10,18 +11,20 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
+import java.util.Set;
 
-public class CompatLoot extends BlockLoot {
+public class CompatLoot extends BlockLootSubProvider {
 
     // Used to create a factory method for the wrapping Supplier
     public CompatLoot() {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
     @Override
-    protected void addTables() {
+    protected void generate() {
         for (Iterator<Block> it = Core.getBlocks().getEntries().stream().flatMap(RegistryObject::stream).iterator(); it.hasNext(); ) {
             // empty loot table
-            LootTable.Builder builder = LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)));
+            LootTable.Builder builder = LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)));
             this.add(it.next(), builder);
         }
     }

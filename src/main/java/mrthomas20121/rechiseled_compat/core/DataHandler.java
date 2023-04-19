@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.block.ChiseledBlock;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
@@ -16,9 +17,11 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -27,41 +30,61 @@ import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DataHandler {
 
-    // the labels still have to be translated in the lang folder into actual names
-    private static final CreativeModeTab CONNECTING_TAB = new CreativeModeTab("rechisled_compat_connecting") {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            Item item;
-            if (Core.getItems().getEntries().size() > 0) {
+    @Mod.EventBusSubscriber(modid = RechiseledCompat.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ModCreativeModeTabs {
+
+        private static CreativeModeTab COMMON_TAB;
+        public static CreativeModeTab CONNECTING_TAB;
+
+        @SubscribeEvent
+        public static void registerConnectingTab(CreativeModeTabEvent.Register event) {
+            if (Core.getItems().getEntries().size() == 0){return;}
+
+            Supplier<ItemStack> connectingSupplier = () -> {
+                Item item;
                 Iterator<RegistryObject<Item>> iterator = Core.getItems().getEntries().iterator();
                 for (int i = 0; i<30; i++) {iterator.next();} // skip to the next block (has about 30 variations [common + connecting])
                 item = iterator.next().get();
-            } else {
-                item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft", "barrier"));
-            }
 
-            return new ItemStack(item);
-        }
-    };
+                return new ItemStack(item);
+            };
 
-    private static final CreativeModeTab COMMON_TAB = new CreativeModeTab("rechisled_compat_common") {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            Item item;
-            if (Core.getItems().getEntries().size() > 0) {
-                item = Core.getItems().getEntries().iterator().next().get();
-            } else {
-                item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft", "barrier"));
-            }
-            return new ItemStack(item);
+            Supplier<ItemStack> commonSupplier = () -> {
+                Item item = Core.getItems().getEntries().iterator().next().get();
+                return new ItemStack(item);
+            };
+
+            CONNECTING_TAB = event.registerCreativeModeTab(new ResourceLocation(RechiseledCompat.MOD_ID, "rechisled_compat_connecting"),
+                    builder -> builder.icon(connectingSupplier).title(Component.translatable("creativemodetab.rechisled_compat_connecting")));
+
+            COMMON_TAB = event.registerCreativeModeTab(new ResourceLocation(RechiseledCompat.MOD_ID, "rechisled_compat_common"),
+                    builder -> builder.icon(commonSupplier).title(Component.translatable("creativemodetab.rechisled_compat_common")));
         }
-    };
+    }
+
+    private static void addCreativeTabs(CreativeModeTabEvent.BuildContents event) {
+
+        // connecting blocks
+        if(event.getTab() == ModCreativeModeTabs.CONNECTING_TAB) {
+            Core.getItems().getEntries().forEach((item) -> {
+                if (item.getId().getPath().contains("connecting")) {event.accept(item);}
+            });
+        }
+
+        // not connecting blocks
+        if(event.getTab() == ModCreativeModeTabs.COMMON_TAB) {
+            Core.getItems().getEntries().forEach((item) -> {
+                if (!item.getId().getPath().contains("connecting")) {event.accept(item);}
+            });
+        }
+    }
 
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RechiseledCompat.MOD_ID);
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RechiseledCompat.MOD_ID);
@@ -137,6 +160,8 @@ public class DataHandler {
     protected static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);
+
+        eventBus.addListener(DataHandler::addCreativeTabs);
     }
 
     protected static void registerBlock(String parent_block_id, String new_block_id, Boolean collect_tags) {
@@ -176,12 +201,7 @@ public class DataHandler {
     }
 
     private static Item.Properties getItemProperties(Block block) {
-
-        if (block.getDescriptionId().contains("connecting")) {
-            return new Item.Properties().tab(CONNECTING_TAB);
-        }
-
-        return new Item.Properties().tab(COMMON_TAB);
+        return new Item.Properties();
     }
 
 

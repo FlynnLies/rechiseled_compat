@@ -1,20 +1,13 @@
 package mrthomas20121.rechiseled_compat.core;
 
-import mrthomas20121.rechiseled_compat.RechiseledCompat;
 import mrthomas20121.rechiseled_compat.compat.Mod;
-import mrthomas20121.rechiseled_compat.datagen.CompatForgeTagsProvider;
 import mrthomas20121.rechiseled_compat.loot.LootModifiers;
 import mrthomas20121.rechiseled_compat.loot.NamespaceCondition;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 
@@ -80,28 +73,6 @@ public class Core {
         DataHandler.registerBlock(template_block_id, new_block_id, COLLECT_TAGS);
     }
 
-
-    /**
-     * Set tags for list of blocks
-     * must only be called inside a CompatForgeTagsProvider<T>#addTags (not necessarily directly)
-     **/
-    public static void addBlockTags(CompatForgeTagsProvider<Block> provider, String[] blocks, String[] tags) {
-        for (String tagName : tags) {
-            TagKey<Block> key = BlockTags.create(new ResourceLocation(tagName));
-            for (String id : blocks) {
-                provider.addOptionalTag(key, new ResourceLocation(RechiseledCompat.MOD_ID, id));
-            }
-        }
-    }
-
-    public static void addItemTags(CompatForgeTagsProvider<Item> provider, String[] items, String[] tags) {
-        for (String tagName : tags) {
-            TagKey<Item> key = ItemTags.create(new ResourceLocation(tagName));
-            for (String id : items) {
-                provider.addOptionalTag(key, new ResourceLocation(RechiseledCompat.MOD_ID, id));
-            }
-        }
-    }
 
     public static DeferredRegister<Block> getBlocks() {
         return DataHandler.getBlocks();

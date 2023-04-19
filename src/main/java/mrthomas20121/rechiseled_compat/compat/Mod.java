@@ -1,10 +1,11 @@
 package mrthomas20121.rechiseled_compat.compat;
 
+import com.mojang.datafixers.util.Pair;
 import mrthomas20121.rechiseled_compat.core.Core;
-import mrthomas20121.rechiseled_compat.datagen.CompatForgeTagsProvider;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +43,8 @@ public abstract class Mod {
 
     public abstract void registerBlocks();
 
-    public abstract <T> void addTags(CompatForgeTagsProvider<T> provider);
+    public abstract Collection<Pair<String[], String[]>> getBlockTags();
+
+    public abstract Collection<Pair<String[], String[]>> getItemTags();
 
 }
