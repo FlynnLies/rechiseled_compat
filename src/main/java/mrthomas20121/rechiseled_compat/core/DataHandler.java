@@ -12,11 +12,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -37,19 +33,27 @@ import java.util.stream.Stream;
 
 public class DataHandler {
 
+    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RechiseledCompat.MOD_ID);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RechiseledCompat.MOD_ID);
+    private static ArrayList<Pair<Block, String>> BLOCK_TEMPLATE_MAP;
+    private static Dictionary<Block, ArrayList<TagKey<Block>>> TEMPLATE_BLOCK_TAGS;
+
+
+
     @Mod.EventBusSubscriber(modid = RechiseledCompat.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ModCreativeModeTabs {
-
         private static CreativeModeTab COMMON_TAB;
         public static CreativeModeTab CONNECTING_TAB;
 
         @SubscribeEvent
         public static void registerConnectingTab(CreativeModeTabEvent.Register event) {
-            if (Core.getItems().getEntries().size() == 0){return;}
+            Collection<RegistryObject<Item>> entries = Core.getItems().getEntries();
+
+            if (entries.size() == 0){return;}
 
             Supplier<ItemStack> connectingSupplier = () -> {
                 Item item;
-                Iterator<RegistryObject<Item>> iterator = Core.getItems().getEntries().iterator();
+                Iterator<RegistryObject<Item>> iterator = entries.iterator();
                 for (int i = 0; i<30; i++) {iterator.next();} // skip to the next block (has about 30 variations [common + connecting])
                 item = iterator.next().get();
 
@@ -57,7 +61,7 @@ public class DataHandler {
             };
 
             Supplier<ItemStack> commonSupplier = () -> {
-                Item item = Core.getItems().getEntries().iterator().next().get();
+                Item item = entries.iterator().next().get();
                 return new ItemStack(item);
             };
 
@@ -71,38 +75,30 @@ public class DataHandler {
 
     private static void addCreativeTabs(CreativeModeTabEvent.BuildContents event) {
 
+        Collection<RegistryObject<Item>> entries = Core.getItems().getEntries();
+
         // connecting blocks
         if(event.getTab() == ModCreativeModeTabs.CONNECTING_TAB) {
-            Core.getItems().getEntries().forEach((item) -> {
+            entries.forEach((item) -> {
                 if (item.getId().getPath().contains("connecting")) {event.accept(item);}
             });
         }
 
         // not connecting blocks
         if(event.getTab() == ModCreativeModeTabs.COMMON_TAB) {
-            Core.getItems().getEntries().forEach((item) -> {
+            entries.forEach((item) -> {
                 if (!item.getId().getPath().contains("connecting")) {event.accept(item);}
             });
         }
     }
 
-    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RechiseledCompat.MOD_ID);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RechiseledCompat.MOD_ID);
-
-    private static ArrayList<Pair<Block, String>> BLOCK_TEMPLATE_MAP;
-    private static Dictionary<Block, ArrayList<TagKey<Block>>> TEMPLATE_BLOCK_TAGS;
-
     private static ArrayList<Pair<Block, String>> getTemplateMap() {
-        if (BLOCK_TEMPLATE_MAP == null) {
-            BLOCK_TEMPLATE_MAP = new ArrayList<>();
-        }
+        BLOCK_TEMPLATE_MAP = BLOCK_TEMPLATE_MAP != null ? BLOCK_TEMPLATE_MAP : new ArrayList<>();
         return BLOCK_TEMPLATE_MAP;
     }
 
     private static Dictionary<Block, ArrayList<TagKey<Block>>> getTemplateBlockTags() {
-        if (TEMPLATE_BLOCK_TAGS == null) {
-            TEMPLATE_BLOCK_TAGS = new Hashtable<>();
-        }
+        TEMPLATE_BLOCK_TAGS = TEMPLATE_BLOCK_TAGS != null ? TEMPLATE_BLOCK_TAGS : new Hashtable<>();
         return TEMPLATE_BLOCK_TAGS;
     }
 
@@ -120,6 +116,7 @@ public class DataHandler {
         System.out.printf("Registered template %s for block %s\n", template.getDescriptionId(), compatBlockDescriptionId);
     }
 
+    // for data generation
     // must be done when a world is loaded, else the registry will not be loaded
     private static void registerBlockTagsFromBlock(Block template) {
         // get a stream of all tags for this block and collect them into a ArrayList
@@ -171,11 +168,10 @@ public class DataHandler {
         Optional<Holder<Block>> optional = ForgeRegistries.BLOCKS.getHolder(parent);
         if (optional.isPresent() && parent != null) {
             // register the block
-            RegistryObject<Block> block = BLOCKS.register(new_block_id, () -> new ChiseledBlock(false, getBlockProperties(parent)));
+            RegistryObject<Block> block = BLOCKS.register(new_block_id, () -> new ChiseledBlock(false, BlockBehaviour.Properties.copy(parent)));
 
             // register the item
-            @SuppressWarnings("unused")
-            RegistryObject<Item> item = ITEMS.register(new_block_id, () -> new BlockItem(block.get(), getItemProperties(block.get())));
+            RegistryObject<Item> item = ITEMS.register(new_block_id, () -> new BlockItem(block.get(), new Item.Properties()));
 
             if (collect_tags) {
                 DataHandler.registerTemplate(parent, RechiseledCompat.MOD_ID + ":" + new_block_id);
@@ -184,24 +180,6 @@ public class DataHandler {
         } else {
             System.out.printf("Block %s not found or Holder is not present, skipping %s:%s\n", parent_block_id, RechiseledCompat.MOD_ID, new_block_id);
         }
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    private static BlockBehaviour.Properties getBlockProperties(Block parent) {
-
-        BlockState parent_state = parent.defaultBlockState();
-        SoundType soundType = parent_state.getSoundType();
-        Material material = parent_state.getMaterial();
-        MaterialColor materialColor = parent_state.getMaterial().getColor();
-
-        float explosionResistance = parent.getExplosionResistance(null, null, null, null);
-        float hardness = parent_state.getDestroySpeed(null, null);
-
-        return BlockBehaviour.Properties.of(material, materialColor).strength(hardness, explosionResistance).sound(soundType);
-    }
-
-    private static Item.Properties getItemProperties(Block block) {
-        return new Item.Properties();
     }
 
 

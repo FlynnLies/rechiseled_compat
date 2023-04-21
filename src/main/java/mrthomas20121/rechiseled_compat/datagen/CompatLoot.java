@@ -22,10 +22,10 @@ public class CompatLoot extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        for (Iterator<Block> it = Core.getBlocks().getEntries().stream().flatMap(RegistryObject::stream).iterator(); it.hasNext(); ) {
+        for (Iterator<Block> blocks = Core.getBlocks().getEntries().stream().flatMap(RegistryObject::stream).iterator(); blocks.hasNext(); ) {
             // empty loot table
             LootTable.Builder builder = LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)));
-            this.add(it.next(), builder);
+            this.add(blocks.next(), builder);
         }
     }
 
